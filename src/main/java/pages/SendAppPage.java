@@ -1,10 +1,10 @@
 package pages;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import steps.BaseSteps;
 
 import static org.junit.Assert.assertEquals;
 
@@ -58,9 +58,13 @@ public class SendAppPage extends BasePage {
     @FindBy(xpath = "/html/body/app/ng-component/div/div/div/app-forming-product/div/form/div/alert-form[1]/div")
     public WebElement alertForm;
 
-    public SendAppPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+    public SendAppPage() {
+        super();
+        PageFactory.initElements(BaseSteps.getDriver(), this);
+    }
+
+    public void clickButton() {
+        sendButton.click();
     }
 
     public void fillField(String fieldName, String value) {
@@ -206,6 +210,8 @@ public class SendAppPage extends BasePage {
             default:
                 throw new AssertionError("Поле не объявлено на странице");
         }
-
+    }
+    public void checkPageTitle(String value) {
+        assertEquals(BaseSteps.getDriver().getTitle(), value);
     }
 }
