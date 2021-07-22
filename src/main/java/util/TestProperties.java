@@ -1,3 +1,5 @@
+package util;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,7 +10,6 @@ public class TestProperties {
     private static TestProperties INSTANCE = null;
 
     private TestProperties() {
-        System.setProperty("environment", "application");
         try {
             properties.load(new FileInputStream(new File("./" + System.getProperty("environment") + ".properties")));
         } catch (IOException e) {
